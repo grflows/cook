@@ -9,7 +9,7 @@ kiwi is a tiny lua-like language that transpiles into js.
 it's simple, create a file `hello.kw` containing:
 
 ```lua
-print("hello world") --this is a comment :)
+log("hello world") --this is a comment :)
 ```
 
 run `kiwi hello.kw` and you'll get a `hello.js` file.
@@ -55,8 +55,7 @@ end
 
 #### tiny function notation
 
-to make a one-liner function, aka a lambda function, use this syntax:
-`fn foo(bar) -> <statment>`
+to make a one-liner function, aka a lambda function, use this syntax: `fn foo(bar) -> <statment>`
 
 ```rust
 fn x(y) -> y + 42
@@ -92,8 +91,7 @@ end
 
 #### break and next
 
-`break` exits the current loop
-`next` skips the current iteration and starts the next one.
+`break` exits the current loop `next` skips the current iteration and starts the next one.
 
 ```lua
 while true
@@ -143,7 +141,7 @@ var x (flag)? 4 else 2
 defers a single-line statement's execution to the end of the current scope. There can only be one `defer` per scope.
 
 ```odin
-  defer print('3')
-  print('1')
-  print('2')
+  defer log('3')
+  log('1')
+  log('2')
 ```
