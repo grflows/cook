@@ -20,7 +20,7 @@ the most used things are turned into sensably named keywords, functions, or meth
 const playBtn = document.getElementById("play");
 ```
 
-simple use `map` to map a variable to a DOM object
+simply use `map` to map a variable to a DOM object
 
 ```lua
 map playBtn to objById('play')
@@ -57,8 +57,7 @@ The debugging annotations simply replaces the log() if you're a print debugger. 
 
 ### macros
 
-you can like them, you can hate them, but you can't say they make writing code harder.
-the simplest form of macro is`#replace "string $1..$n" -> <statement $1..$n>`
+you can like them, you can hate them, but you can't say they make writing code harder. the simplest form of macro is`#replace "string $1..$n" -> <statement $1..$n>`
 
 ```lua
 #replace ">> $1 $2" -> map $1 to objById('$2')
