@@ -1,4 +1,4 @@
-# kiwi 🥝
+# cook 🍳
 
 a tiny lua-like langauge transpiled into javascript. The current version is written in python.
 
@@ -14,8 +14,7 @@ to check the syntax and learn the langauge [click here](http://localhost:33583/d
 
 ### PHP kind of methodology
 
-the most used things are turned into [sensably named keywords, functions, or methods](doc/cheatsheet.md).
-Here's an example:
+the most used things are turned into [sensably named keywords, functions, or methods](http://localhost:33583/doc/cheatsheet.md). Here's an example:
 
 ```js
 const playBtn = document.getElementById("play");
@@ -43,14 +42,14 @@ end
 
 ### guards and debugging annotations
 
-[Guards]() are compile and run-time checkers to prevent some simple but annoying bugs. Here're some of the most used guards.
+Guards are compile and run-time checkers to prevent some simple but annoying bugs. Here're some of the most used guards.
 
 -   `@(condition)` is a primitive guard, throws if the condition is false.
 -   `@type<arg, Type>` asserts the type of arg, throws if the type is different.
 -   `@max<iteration>` limits a loop's iteration, throws if the limit is exceeded.
 -   `@impure<fn(err, ..)>` if a statement returns null or undefined, fn(err) is called.
 
-[Debugging annotations]() simply replaces the log() if you're a print debugger. Here're some of the common onces:
+Debugging annotations simply replaces the log() if you're a print debugger. Here're some of the common onces:
 
 -   `?var` basically log(\_variable-name, \_variable\_value)
 -   `?trace` prints the last function call of `foo() ?trace`
