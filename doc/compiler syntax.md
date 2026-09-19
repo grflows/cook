@@ -1,12 +1,12 @@
 # compiler syntax
-## directives, guards, and annotations
+## directives, guards, annotations
 
 ### directives
 
 stuff the complier takes to change the code
 
-`#single-use` // used to prevent double use of a variable, nullifies the var and compiler error
-
+`#single-use` // used to prevent double use of a variable, nullifies the var and compiler error \
+`#replace` // use this 
 ### guards
 
 these are value checks, but with extra steps.  
