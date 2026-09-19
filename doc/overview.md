@@ -6,13 +6,13 @@ kiwi is a tiny lua-like language that transpiles into js.
 
 ### Hello world
 
-it's simple, create a file ```hello.kw``` containing:
+it's simple, create a file `hello.kw` containing:
 
 ```lua
 print("hello world") --this is a comment :)
 ```
 
-run `kiwi hello.kw` and you'll get a ```hello.js``` file.
+run `kiwi hello.kw` and you'll get a `hello.js` file.
 
 ### variables
 
@@ -32,7 +32,7 @@ set name = "James Bond"
 set list\[0] = 43
 ```
 
-for consts use ```const```:
+for consts use `const`:
 
 ```js
 const place = "Paris";
@@ -40,7 +40,7 @@ const place = "Paris";
 
 ### functions
 
-to define a function use the ```fn``` keyword
+to define a function use the `fn` keyword
 
 ```lua
 fn foo()
@@ -54,8 +54,10 @@ end
 ```
 
 #### tiny function notation
-to make a one-liner function, aka a lambda function, use this syntax: \
-```fn foo(bar) -> <statment>```
+
+to make a one-liner function, aka a lambda function, use this syntax:
+`fn foo(bar) -> <statment>`
+
 ```rust
 fn x(y) -> y + 42
 fn foo(n) -> bar(n) + 4
@@ -76,7 +78,7 @@ for i in list
 end
 ```
 
-you can use the ```@max<iteration>``` guard to prevent a forever loop.
+you can use the `@max<iteration>` guard to prevent a forever loop.
 
 ```lua
 while x < y @max<10>
@@ -90,8 +92,8 @@ end
 
 #### break and next
 
-```break``` exits the current loop
-```next``` skips the current iteration and starts the next one.
+`break` exits the current loop
+`next` skips the current iteration and starts the next one.
 
 ```lua
 while true
@@ -130,48 +132,18 @@ end
 
 #### conditional assignment
 
-for a simple op; (condition)? foo else bar
+for a simple ternary op: `(condition)? foo else bar`
 
 ```js
 var x (flag)? 4 else 2
 ```
 
 ### defer
-defers a single-line statement's execution to the end of the current scope. There can only be one ```defer``` per scope.
+
+defers a single-line statement's execution to the end of the current scope. There can only be one `defer` per scope.
 
 ```odin
   defer print('3')
   print('1')
   print('2')
 ```
-
-
-### directives, guards, and annotations
-
-#### directives
-
-stuff the complier takes to change the code
-
-`#single-use` // used to prevent double use of a variable, nullifies the var and compiler error
-
-#### guards
-
-these are value checks, but with extra steps.
-to run with guards on, use the -g or --guards flag.\\
-
-
-```@(condition)``` is a primitive guard, throws if the condition is true. \
-```@type<arg, Type>``` asserts the type of arg, throws if the type is different \
-```@max<iteration>``` limit a loop's iteration, throws if the limit is exceeded
-
-
-#### annotations
-
-these are for debugging and expermenting, they need a -a or --annotations flag to run.
-
-?var // prints the value(s) of the variable(s) in the current line
-?read // prints every time the variable is accessed
-?set // prints every time the variable is re-assigned
-?call // prints the function call every time the function is called
-?trace // traces the last function's call
-?type // prints the type(s) of the variable(s) in the current line
