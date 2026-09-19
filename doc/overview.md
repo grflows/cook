@@ -1,6 +1,6 @@
 # Overview
 
-## Basic Syntax
+## basic Syntax
 
 ### Hello world
 it's simple, create a file hello.kw containing:
@@ -15,23 +15,16 @@ to define a var just do:
 
 var x = 1
 var name = "Bond"
+var list = []
 
 to reassign a var:
+set x = 10
+set name = "James Bond"
+set list\[0] = 43
 
-let x = 10
-let name = "James Bond"
 
-#### variables modifications
-mods changes the behaviour of variables:
-
-const // make it constant
-temp // make it single use
-secret // encrypted in memory, only decrypted when read
-pub // make it global
-local // for the current module use only
-owned .. <foo(), bar()> // only allowed to be read by pre-defined functions
-shared // safe to share between threads and async calls
-opt // can return value, null, or err
+for consts:
+const place = "Paris"
 
 ### functions
 do define a function use fn
@@ -40,11 +33,16 @@ fn foo()
   // do something
 end
 
-#### lambda functions
-use to make a lambda function, use fn foo(bar) -> // something 
+fn foo()
+  // do something
+  return bar
+end
+
+#### tiny function notation
+use fn foo(bar) -> // do something 
 fn x(y) -> y + 42
-lambda functions strictly do arithmetics evaluations.
-They either return a value, null, or an err.
+fn foo(n) -> bar(n) + 4
+fn t(flag) -> (flag)? j() else n()
 
 
 ### loops
@@ -58,15 +56,19 @@ for i in list
   // do something
 end
 
-you can use the #limit directive to prevent a forever loop.
+you can use the @max\<iterations> guard to prevent a forever loop.
 
-while x < y  #limit 10
+while x < y @max<10>
   // do something
 end
 
-for i in db #limit 39
+for i in db @max<39>
   // do something
 end
+
+#### break, next
+break exits the current loop
+next skips the current iteration and starts the next
 
 ### conditional statements
 the same ol' if-else syntax
@@ -91,17 +93,39 @@ else
   // do something
 end
 
-#### ternary Ops
-for a simple op, (condition)=> foo else bar
-var x (flag)=> 4 else 2
+#### conditional assignment
+for a simple op, (condition)? foo else bar
+var x (flag)? 4 else 2
 
-### code blocks
-define a code block using the block keyword, to exit a block, use the exit keyword
-
-block
+### defer
+defer a single-line statement's execution to the end of the current scope.
+fn foo(bar)
+  defer foo1()
   // do something
-  exit block
 end
 
+### directives, guards, and annotations
+
+#### directives
+stuff the complier takes to change  the code
+
+#single-use // used to prevent double use of a variable, nullifies the var and compiler error
+
+#### guards
+these are value checks, but with extra steps.
+to run with guards on, use the -g or --guards flag.
+
+@(condition) // primitive guard, throws if the condition is true
+@type\<arg, Type> // asserts the type, throws if wrong type
+@max\<iteration> // limit a loop's iteration, throws if exceeded
 
 
+#### annotations
+these are for debugging and expermenting, they need a -a or --annotations flag to run.
+
+?var // prints the value(s) of the variable(s) in the current line
+?read // prints every time the variable is accessed
+?set // prints every time the variable is re-assigned
+?call // prints the function call every time the function is called
+?trace // traces the last function's call
+?type // prints the type(s) of the variable(s) in the current line
