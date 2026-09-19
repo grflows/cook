@@ -1,2 +1,2 @@
 # kiwi
-a tiny lang transpiled into js
+a tiny lang transpiled into javascript
