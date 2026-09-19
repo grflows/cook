@@ -7,19 +7,20 @@ a tiny lua-like langauge transpiled into javascript. The current version is writ
 simple by default, complex when it needs to.
 
 ## overview
-to check the syntax and learn the langauge [click here](doc/overview.md)
+
+to check the syntax and learn the langauge [click here](http://localhost:33583/doc/overview.md)
 
 ## some quality of life features
 
 ### PHP kind of methodology
 
-the most used things are turned into functions and methods, here's an example:
+the most used things are turned into sensably named keywords, functions, or methods. Here's an example:
 
 ```js
 const playBtn = document.getElementById("play");
 ```
 
-simple use `map` to map an variable to a DOM object
+simple use `map` to map a variable to a DOM object
 
 ```lua
 map playBtn to objById('play')
@@ -50,13 +51,13 @@ these are compile and run-time checkers to prevent some simple but annoying bugs
 
 The debugging annotations simply replaces the log() if you're a print debugger. Here're some of the common onces:
 
--   `?var` basically log(\_variable-name, \_variable_value)
+-   `?var` basically log(\_variable-name, \_variable\_value)
 -   `?trace` prints the last function call of `foo() ?trace`
 -   `?track` logs every call to the tracked function
 
 ### macros
 
-you can like them, you can hate them, but you can't say they make writing code harder. \
+you can like them, you can hate them, but you can't say they make writing code harder.
 the simplest form of macro is`#replace "string $1..$n" -> <statement $1..$n>`
 
 ```lua
