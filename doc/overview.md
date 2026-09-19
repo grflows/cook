@@ -1,109 +1,121 @@
 # Overview
-
+kiwi is a tiny lua-like language that transpiles into js.
 ## basic Syntax
 
 ### Hello world
 it's simple, create a file hello.kw containing:
-
-print("hello world") // this is a comment :)
-
-run kiwi hello.kw
-you'll get a hello.js
+```lua
+print("hello world") --this is a comment :)
+```
+run ``` kiwi hello.kw ```
+and you'll get a hello.js file.
 
 ### variables
 to define a var just do:
 
+```js
 var x = 1
 var name = "Bond"
 var list = []
-
+```
 to reassign a var:
+```js
 set x = 10
 set name = "James Bond"
 set list\[0] = 43
-
+```
 
 for consts:
+```js
 const place = "Paris"
+```
 
 ### functions
 do define a function use fn
-
+```lua
 fn foo()
-  // do something
+  -- do something
 end
 
 fn foo()
-  // do something
+  -- do something
   return bar
 end
+```
 
 #### tiny function notation
-use fn foo(bar) -> // do something 
+```rust
+fn foo(bar) -> <statment>
 fn x(y) -> y + 42
 fn foo(n) -> bar(n) + 4
 fn t(flag) -> (flag)? j() else n()
-
+```
 
 ### loops
 we only have for and while
 
+```lua
 while x < 0
-  // do something
+  -- do something
 end
 
 for i in list
-  // do something
+   -- do something
 end
-
+```
 you can use the @max\<iterations> guard to prevent a forever loop.
 
+```lua
 while x < y @max<10>
-  // do something
+  -- do something
 end
 
 for i in db @max<39>
-  // do something
+  -- do something
 end
 
+```
 #### break, next
 break exits the current loop
 next skips the current iteration and starts the next
 
 ### conditional statements
 the same ol' if-else syntax
-
+```lua
 if (x == y)
-  // do something
+  -- do something
 end
 
 if (flag)
-  // do something
+  -- do something
 else
-  // do something else
+  -- do something else
 end
 
 if (name == "James")
-  // do something
+  -- do something
 else if (name == "Bond")
-  // do something
+  -- do something
 else if (name == "specter")
-  // do something
+  -- do something
 else
-  // do something
+  -- do something
 end
-
+```
 #### conditional assignment
-for a simple op, (condition)? foo else bar
+for a simple op; (condition)? foo else bar
+```js
 var x (flag)? 4 else 2
+```
 
 ### defer
 defer a single-line statement's execution to the end of the current scope.
-fn foo(bar)
+```odin
+...
   defer foo1()
   // do something
-end
-
+...
+```
 ### directives, guards, and annotations
 
 #### directives
