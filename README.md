@@ -135,8 +135,7 @@ x = if (flag) 4 else randInt()
 
 ### importing
 
-mint takes the headers approach to importing. It uses a .seam file that can act as the face of multiple files.
-to use a .seam file, use the `use` keyword.
+mint takes the headers approach to importing. It uses a .seam file that can act as the face of multiple files. to use a .seam file, use the `use` keyword.
 
 ```rust
 use <engine.seam>
@@ -146,8 +145,10 @@ a `.seam` file has a slightly different structure and rules than a normal mint l
 
 -   to help with the documentation, whatever is inside the brackets `(){}` stays in them. It could be types, arguments and their explantions, whatever. As long as you use `foo(whatever you write here gets ignored)`   to denote functions, and `{same here}` to denote the consts types or returns types.
 -   The `from`, `import`, `append` keywords only work inside .seam file. And they accept only one file or lib at a time:
-    -   `from` selects something from files and libs / modules.
+    -   `from` selects something from files and libs.
     -   `import` dedcated to js libs. It can import `as` a namespace.
+    -    `append` this just appends mint files, or appends js files to the compilation output.
+
 -   you can assign *functions*, *consts* and *js libs* different names to avoid collisions using the `as` keyword. You however can not us `as` for file names.
 
 ```lua
