@@ -147,9 +147,8 @@ a `.seam` file has a slightly different structure and rules than a normal mint l
 -   The `from`, `import`, `append` keywords only work inside .seam file. And they accept only one file or lib at a time:
     -   `from` selects something from files and libs.
     -   `import` dedcated to js libs. It can import `as` a namespace.
-    -    `append` this just appends mint files, or appends js files to the compilation output.
-
--   you can assign *functions*, *consts* and *js libs* different names to avoid collisions using the `as` keyword. You however can not us `as` for file names.
+    -   `append` this just appends mint files, or appends js files to the compilation output.
+-   you can assign *functions*, *consts* and *js libs* different names to avoid collisions using the `as` keyword. *You however can not use `as` for file names*.
 
 ```lua
 --- engine.seam
