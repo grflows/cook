@@ -147,7 +147,7 @@ a `.seam` file has a slightly different structure and rules than a normal mint l
 -   The `from`, `import`, `append` keywords only work inside .seam file. And they accept only one file or lib at a time:
     -   `from` selects something from files and libs.
     -   `import` dedcated to js libs. It can import `as` a namespace.
-    -   `append` this just appends mint files, or appends js files to the compilation output.
+    -   `include` this just merges mint files, or js files with the compilation output.
 -   you can assign *functions*, *consts* and *js libs* different names to avoid collisions using the `as` keyword. *You however can not use `as` for file names*.
 
 ```lua
@@ -156,7 +156,7 @@ from 'engine.mnt' --- mint file
   Scene {struct} --- const
   Camera {struct}
   Object3D {struct}
-  render(scene: scene) {int} --- functions
+  render(scene: scene) {int} --- function
   rendererInit(window: window, bool: gpuFlag) {int | err}
   shaderApply(shader: shader, int: amount) {struct}
 end
@@ -170,15 +170,14 @@ from 'customlarp.js' --- js file
   hashr(str: secret) {hash} as encrypt
 end
 
-append 'gamelevel.mint' --- appends this to the main mint file
-append 'shaders.js' --- appends js to the final compilation
+include 'gamelevel.mint' --- includes this to the main mint file
+include 'shaders.js' --- includes js to the final compilation
 import 'isEven' as even --- for modules / libs
 ```
 
 ### metaprogramming
 
 this is how mint grows; through `macro` and `meta`.
-
 
 -   macro is a preprocessor that runs during lexing.
 
@@ -212,6 +211,13 @@ meta
   comptime afetch<_assign.rightarm>(url)
     emit(rawjs(await fetch(url)))
   end
+
+  comptime defer<_statement>()
+    statment = _statment.body
+    delete(_statment)
+    _currentscope.body.append(statment)
+  end
+
 end
 
 while true @max(20)
@@ -221,7 +227,11 @@ end
 
 @hello('web dev')
 
-
 const hash = @getHash()
 const json = @afetch(url)
+
+fn foo()
+  log('this is last') @defer
+  --- a bunch of stuff
+end
 ```
