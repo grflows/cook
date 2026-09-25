@@ -174,3 +174,54 @@ append 'gamelevel.mint' --- appends this to the main mint file
 append 'shaders.js' --- appends js to the final compilation
 import 'isEven' as even --- for modules / libs
 ```
+
+### metaprogramming
+
+this is how mint grows; through `macro` and `meta`.
+
+
+-   macro is a preprocessor that runs during lexing.
+
+```rust
+macro (_condition)? _casetrue : _casefalse >> if (_condition) _casetrue else _casefalse
+macro #mintline >> log('line[${_linenumber}] is in mint lang')
+
+const num = (flag)? 2 : 4
+#mintline
+```
+
+-   meta is a metaprogramming block that runs during compilation or code generation.
+
+```lua
+meta
+  comptime max<_loop.header>(miter)
+    const counter = newVar(0)
+    _loop.prepend(counter)
+    _loop.body.prepend(mint(if (++counter > miter) errlog('max iteration')))
+  end
+
+  comptime getHash<_assign.rightarm>()
+    const hash = std.hash('hello world') --- runs the hash function
+    emit(hash) --- emit the result as a the hash function return type
+  end
+
+  comptime hello<_emptyline>(name)
+    emit(mint(log('hello ${name}')))
+  end
+
+  comptime afetch<_assign.rightarm>(url)
+    emit(rawjs(await fetch(url)))
+  end
+end
+
+while true @max(20)
+  --- do something
+end
+
+
+@hello('web dev')
+
+
+const hash = @getHash()
+const json = @afetch(url)
+```
