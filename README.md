@@ -231,7 +231,7 @@ const hash = @getHash()
 const json = @afetch(url)
 
 fn foo()
-  log('this is last') @defer
+  log('this is last') @defer()
   --- a bunch of stuff
 end
 ```
