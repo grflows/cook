@@ -193,7 +193,7 @@ const num = (flag)? 2 : 4
 
 ```lua
 meta
-  comptime max<_loop.header>(miter)
+  comptime max<_whileloop.header | _forloop.header>(miter)
     const counter = newVar(0)
     _loop.prepend(counter)
     _loop.body.prepend(mint(if (++counter > miter) errlog('max iteration')))
@@ -213,9 +213,9 @@ meta
   end
 
   comptime defer<_statement>()
-    statment = _statment.body
-    delete(_statment)
-    _currentscope.body.append(statment)
+    statment = _statement.body
+    delete(_statement)
+    _currentscope.body.append(statement)
   end
 
 end

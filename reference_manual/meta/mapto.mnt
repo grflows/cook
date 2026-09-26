@@ -1,0 +1,15 @@
+meta
+  comptime <_newvarname>mapTo(id)
+    objName = _newvarname.name
+    consume(const _newvarname)
+    if id.chop() == '#' --- reverse list or str .pop()
+      emit(js(const ${objName} = document.getElementById(${id}))
+    else if id.chop() == '.'
+      emit(js(const ${objName} = document.getElementByClassName(${id}))
+    else
+      err("MapTo: expects #ids or .classes only")
+  end
+end
+
+greet @mapTo('#btn-greet')
+label @mapTo('.label')
